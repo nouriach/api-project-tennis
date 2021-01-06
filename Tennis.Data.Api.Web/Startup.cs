@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 using Tennis.Data.Api.Web.Data;
 using Tennis.Data.Api.Web.Options;
 using Tennis.Data.Api.Web.Options.Installers;
+using Tennis.Data.Api.Domain.Models.Players.Queries;
 
 namespace Tennis.Data.Api.Web
 {
@@ -29,7 +31,14 @@ namespace Tennis.Data.Api.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.InstallServicesInAssembly(Configuration);
+
+            services.AddMediatR(typeof(GetAllPlayersQuery).Assembly);
+            services.AddMediatR(typeof(CreatePlayerCommand).Assembly);
+            services.AddMediatR(typeof(DeletePlayerCommand).Assembly);
+            services.AddMediatR(typeof(GetPlayerQuery).Assembly);
+            services.AddMediatR(typeof(UpdatePlayerCommand).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
