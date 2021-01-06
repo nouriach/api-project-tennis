@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Tennis.Data.Api.Domain\Tennis.Data.Api.Domain.csproj" />
   </ItemGroup>
 
 </Project>
