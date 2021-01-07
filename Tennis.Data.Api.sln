@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Web", "Tennis.Data.Api.Web\Tennis.Data.Api.Web.csproj", "{38428B7E-262D-4F4E-9B67-08817FC7E014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Web", "Tennis.Data.Api.Web\Tennis.Data.Api.Web.csproj", "{38428B7E-262D-4F4E-9B67-08817FC7E014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Web.UnitTests", "Tennis.Data.Api.Web.UnitTests\Tennis.Data.Api.Web.UnitTests.csproj", "{10EEC963-32E2-40B7-8E9C-8C41BD9679D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Web.UnitTests", "Tennis.Data.Api.Web.UnitTests\Tennis.Data.Api.Web.UnitTests.csproj", "{10EEC963-32E2-40B7-8E9C-8C41BD9679D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Domain", "Tennis.Data.Api.Domain\Tennis.Data.Api.Domain.csproj", "{CFF24F22-BC32-4526-A525-7C60673ADF49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Domain", "Tennis.Data.Api.Domain\Tennis.Data.Api.Domain.csproj", "{CFF24F22-BC32-4526-A525-7C60673ADF49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Domain.UnitTests", "Tennis.Data.Api.Domain.UnitTests\Tennis.Data.Api.Domain.UnitTests.csproj", "{0E1B3786-A3E0-4244-9C58-284C4FE454CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Domain.UnitTests", "Tennis.Data.Api.Domain.UnitTests\Tennis.Data.Api.Domain.UnitTests.csproj", "{0E1B3786-A3E0-4244-9C58-284C4FE454CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Infrastructures", "Tennis.Data.Api.Infrastructure\Tennis.Data.Api.Infrastructures.csproj", "{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Applications", "Tennis.Data.Api.Application\Tennis.Data.Api.Applications.csproj", "{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Persistences", "Tennis.Data.Api.Persistence\Tennis.Data.Api.Persistences.csproj", "{98763ABB-1A21-46E7-88CF-32762243A7E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{0E1B3786-A3E0-4244-9C58-284C4FE454CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E1B3786-A3E0-4244-9C58-284C4FE454CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E1B3786-A3E0-4244-9C58-284C4FE454CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
