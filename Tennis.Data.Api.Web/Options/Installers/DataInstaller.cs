@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tennis.Data.Api.Domain.Interfaces;
+using Tennis.Data.Api.Domain.Models.Players.Services;
 using Tennis.Data.Api.Web.Data;
 
 namespace Tennis.Data.Api.Web.Options.Installers
@@ -19,6 +21,9 @@ namespace Tennis.Data.Api.Web.Options.Installers
                         configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSingleton<IPlayerService, PlayerService>();
+
         }
     }
 }
