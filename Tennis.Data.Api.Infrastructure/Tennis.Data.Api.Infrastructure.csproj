@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tennis.Data.Api.Application\Tennis.Data.Api.Applications.csproj" />
-    <ProjectReference Include="..\Tennis.Data.Api.Persistence\Tennis.Data.Api.Persistences.csproj" />
+    <ProjectReference Include="..\Tennis.Data.Api.Application\Tennis.Data.Api.Application.csproj" />
+    <ProjectReference Include="..\Tennis.Data.Api.Persistence\Tennis.Data.Api.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

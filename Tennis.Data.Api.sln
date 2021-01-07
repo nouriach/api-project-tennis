@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Domain", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Domain.UnitTests", "Tennis.Data.Api.Domain.UnitTests\Tennis.Data.Api.Domain.UnitTests.csproj", "{0E1B3786-A3E0-4244-9C58-284C4FE454CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Infrastructures", "Tennis.Data.Api.Infrastructure\Tennis.Data.Api.Infrastructures.csproj", "{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Infrastructure", "Tennis.Data.Api.Infrastructure\Tennis.Data.Api.Infrastructure.csproj", "{FA75BC9A-8DE2-4872-B4C7-39920F1DFE70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Applications", "Tennis.Data.Api.Application\Tennis.Data.Api.Applications.csproj", "{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Application", "Tennis.Data.Api.Application\Tennis.Data.Api.Application.csproj", "{593A6366-C78B-4EA4-8392-FAEFE3CA9D49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Persistences", "Tennis.Data.Api.Persistence\Tennis.Data.Api.Persistences.csproj", "{98763ABB-1A21-46E7-88CF-32762243A7E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Persistence", "Tennis.Data.Api.Persistence\Tennis.Data.Api.Persistence.csproj", "{98763ABB-1A21-46E7-88CF-32762243A7E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
