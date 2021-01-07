@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tennis.Data.Api.Domain.Contracts;
+using Tennis.Data.Api.Application.Contracts;
+using Tennis.Data.Api.Application.Players.CommandQueries;
 using Tennis.Data.Api.Domain.Models;
-using Tennis.Data.Api.Domain.Models.Players.Queries;
 
 namespace Tennis.Data.Api.Web.Controllers
 {
