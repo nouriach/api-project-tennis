@@ -30,13 +30,10 @@ namespace Tennis.Data.Api.Web.Controllers
         {
             var result = await _mediator.Send(command);
 
-
-            
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
             var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", result.FirstName);
 
             return Created(locationUri, result);
-            //return Ok(result);
         }
 
     }
