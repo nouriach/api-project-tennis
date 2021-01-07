@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Tennis.Data.Api.Domain.Models;
 
 namespace Tennis.Data.Api.Web.Data
 {
@@ -12,5 +13,10 @@ namespace Tennis.Data.Api.Web.Data
             : base(options)
         {
         }
+
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Skill> Skils { get; set; }
+        public DbSet<Style> Styles { get; set; }
+
     }
 }
