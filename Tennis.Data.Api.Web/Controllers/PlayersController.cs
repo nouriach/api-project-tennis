@@ -33,9 +33,13 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpGet(ApiRoutes.Players.GetAll)]
-        public async Task<IActionResult> GetAll(GetAllPlayersQuery query)
+        public async Task<IActionResult> GetAll([FromRoute] GetAllPlayersQuery query)
         {
             var result = await _mediator.Send(query);
+
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
 

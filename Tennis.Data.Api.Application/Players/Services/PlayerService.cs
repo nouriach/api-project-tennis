@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tennis.Data.Api.Application.Interfaces;
+using Tennis.Data.Api.Application.Players.Queries;
 using Tennis.Data.Api.Domain.Models;
 using Tennis.Data.Api.Persistence.Data;
 
@@ -31,6 +32,15 @@ namespace Tennis.Data.Api.Application.Players.Services
             return result;
         }
 
+        public async Task<List<Player>> GetPlayersAsync(GetAllPlayersQuery query)
+        {
+            var result = await _context.Players
+                .Include(skill => skill.Skill)
+                .Include(style => style.Style)
+                .ToListAsync();
+
+            return result;
+        }
         public Task<bool> CreatePlayerAsync(Player playerToCreate)
         {
             // check if player exists
@@ -47,10 +57,6 @@ namespace Tennis.Data.Api.Application.Players.Services
         }
 
 
-        public Task<List<Player>> GetPlayersAsync()
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<bool> UpdatePlayerAsync(Player playerToUpdate)
         {
