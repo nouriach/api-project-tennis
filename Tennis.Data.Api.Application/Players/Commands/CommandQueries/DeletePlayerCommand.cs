@@ -6,7 +6,8 @@ using Tennis.Data.Api.Domain.Models;
 
 namespace Tennis.Data.Api.Application.Players.CommandQueries
 {
-    public class DeletePlayerCommand : IRequest<Player>
+    public class DeletePlayerCommand : IRequest<bool>
     {
+        public int Id { get; set; }
     }
 }

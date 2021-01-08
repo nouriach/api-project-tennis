@@ -17,6 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tennis.Data.Api.Persistence", "Tennis.Data.Api.Persistence\Tennis.Data.Api.Persistence.csproj", "{98763ABB-1A21-46E7-88CF-32762243A7E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Persistence.UnitTests", "Tennis.Data.Api.Persistence.UnitTests\Tennis.Data.Api.Persistence.UnitTests.csproj", "{75600809-48A4-4735-88FF-A8EF102AC611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Infrastructure.UnitTests", "Tennis.Data.Api.Infrastructure.UnitTests\Tennis.Data.Api.Infrastructure.UnitTests.csproj", "{0C70D925-0431-4DD0-8321-F18311A9BF97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Data.Api.Application.UnitTests", "Tennis.Data.Api.Application.UnitTests\Tennis.Data.Api.Application.UnitTests.csproj", "{1335478A-992E-4B1F-9507-DCC4C698AB31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +57,18 @@ Global
 		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98763ABB-1A21-46E7-88CF-32762243A7E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75600809-48A4-4735-88FF-A8EF102AC611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75600809-48A4-4735-88FF-A8EF102AC611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75600809-48A4-4735-88FF-A8EF102AC611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75600809-48A4-4735-88FF-A8EF102AC611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C70D925-0431-4DD0-8321-F18311A9BF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C70D925-0431-4DD0-8321-F18311A9BF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C70D925-0431-4DD0-8321-F18311A9BF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C70D925-0431-4DD0-8321-F18311A9BF97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1335478A-992E-4B1F-9507-DCC4C698AB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1335478A-992E-4B1F-9507-DCC4C698AB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1335478A-992E-4B1F-9507-DCC4C698AB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1335478A-992E-4B1F-9507-DCC4C698AB31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

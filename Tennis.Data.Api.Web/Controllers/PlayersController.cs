@@ -23,22 +23,32 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpGet(ApiRoutes.Players.Get)]
-        public async Task<IActionResult> Get([FromBody] GetPlayerQuery request)
+        public async Task<IActionResult> Get([FromRoute] int playerId)
         {
-            var result = await _mediator.Send(request);
+            var result = await _mediator.Send(new GetPlayerQuery { Id = playerId });
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
 
+        // At the moment this doesn't use any of the query
+        // In the future it may interact with a checkbox/filter system to adapt what is brought back
         [HttpGet(ApiRoutes.Players.GetAll)]
-        public async Task<IActionResult> GetAll(GetAllPlayersQuery query)
+        public async Task<IActionResult> GetAll([FromRoute] GetAllPlayersQuery query)
         {
             var result = await _mediator.Send(query);
+
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
 
         [HttpPost(ApiRoutes.Players.Create)]
         public async Task<IActionResult> Create([FromBody] CreatePlayerCommand command)
         {
+            
             var result = await _mediator.Send(command);
 
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
@@ -55,9 +65,14 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpDelete(ApiRoutes.Players.Delete)]
-        public async Task<IActionResult> Delete([FromBody] DeletePlayerCommand command)
+        public async Task<IActionResult> Delete([FromRoute] int playerId)
         {
-            var deletePlayer = await _mediator.Send(command);
+            var deletePlayer = await _mediator.Send(new DeletePlayerCommand { Id = playerId });
+            if(deletePlayer)
+            {
+                return Content("Result deleted");
+            }
+
             return NotFound();
         }
     }
