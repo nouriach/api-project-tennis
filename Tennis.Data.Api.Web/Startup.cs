@@ -34,10 +34,11 @@ namespace Tennis.Data.Api.Web
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
+                Configuration.GetConnectionString("DefaultConnection"),
+                optionsBuilder => optionsBuilder.MigrationsAssembly("Tennis.Data.Api.Persistence")));
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-                services.AddSingleton<IPlayerService, PlayerService>();
+                services.AddScoped<IPlayerService, PlayerService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -55,7 +56,7 @@ namespace Tennis.Data.Api.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -81,6 +82,8 @@ namespace Tennis.Data.Api.Web
             });
 
             app.UseSwaggerUI(option => option.SwaggerEndpoint(swaggerOptions.UiEndpoint, swaggerOptions.Description));
+
+            DbSeeder.Seed(context);
 
             app.UseEndpoints(endpoints =>
             {

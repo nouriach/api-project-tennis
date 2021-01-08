@@ -6,10 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tennis.Data.Api.Application.Contracts;
 using Tennis.Data.Api.Application.Players.CommandQueries;
+using Tennis.Data.Api.Application.Players.Queries;
 using Tennis.Data.Api.Domain.Models;
 
 namespace Tennis.Data.Api.Web.Controllers
 {
+    [ApiController]
+    [Route("players")]
     public class PlayersController : Controller
     {
         private readonly IMediator _mediator;
@@ -19,10 +22,18 @@ namespace Tennis.Data.Api.Web.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet(ApiRoutes.Players.GetAll)]
-        public IActionResult GetAll()
+        [HttpGet(ApiRoutes.Players.Get)]
+        public async Task<IActionResult> Get([FromBody] GetPlayerQuery request)
         {
-            return Ok();
+            var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+        [HttpGet(ApiRoutes.Players.GetAll)]
+        public async Task<IActionResult> GetAll(GetAllPlayersQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost(ApiRoutes.Players.Create)]
@@ -36,5 +47,18 @@ namespace Tennis.Data.Api.Web.Controllers
             return Created(locationUri, result);
         }
 
+        [HttpPut(ApiRoutes.Players.Update)]
+        public async Task<IActionResult> Update ([FromBody] UpdatePlayerCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete(ApiRoutes.Players.Delete)]
+        public async Task<IActionResult> Delete([FromBody] DeletePlayerCommand command)
+        {
+            var deletePlayer = await _mediator.Send(command);
+            return NotFound();
+        }
     }
 }
