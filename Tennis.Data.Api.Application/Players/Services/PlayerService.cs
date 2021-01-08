@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tennis.Data.Api.Application.Interfaces;
@@ -17,7 +19,19 @@ namespace Tennis.Data.Api.Application.Players.Services
             _context = context;
         }
 
-        public async Task<bool> CreatePlayerAsync(Player playerToCreate)
+        // MAKE ALL ASYNC/AWAIT
+        public async Task<Player> GetPlayerByIdAsync(int playerId)
+        {
+            var result = await _context.Players
+                .Where(x => x.Id == playerId)
+                .Include(skill => skill.Skill)
+                .Include(style => style.Style)
+                .SingleOrDefaultAsync();
+
+            return result;
+        }
+
+        public Task<bool> CreatePlayerAsync(Player playerToCreate)
         {
             // check if player exists
             // if the player does exist retur false
@@ -27,22 +41,18 @@ namespace Tennis.Data.Api.Application.Players.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeletePlayerAsync(int playerId)
+        public Task<bool> DeletePlayerAsync(int playerId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Player> GetPlayerByIdAsync(int playerId)
+
+        public Task<List<Player>> GetPlayersAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List<Player>> GetPlayersAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> UpdatePlayerAsync(Player playerToUpdate)
+        public Task<bool> UpdatePlayerAsync(Player playerToUpdate)
         {
             throw new NotImplementedException();
         }

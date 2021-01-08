@@ -23,9 +23,12 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpGet(ApiRoutes.Players.Get)]
-        public async Task<IActionResult> Get([FromBody] GetPlayerQuery request)
+        public async Task<IActionResult> Get([FromRoute] int playerId)
         {
-            var result = await _mediator.Send(request);
+            var result = await _mediator.Send(new GetPlayerQuery { Id = playerId });
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
 
