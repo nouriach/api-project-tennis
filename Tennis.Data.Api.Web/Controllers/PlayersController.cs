@@ -28,9 +28,10 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpGet(ApiRoutes.Players.GetAll)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll(GetAllPlayersQuery query)
         {
-            return Ok();
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost(ApiRoutes.Players.Create)]
@@ -52,7 +53,7 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpDelete(ApiRoutes.Players.Delete)]
-        public async Task<IActionResult> Delete(DeletePlayerCommand command)
+        public async Task<IActionResult> Delete([FromBody] DeletePlayerCommand command)
         {
             var deletePlayer = await _mediator.Send(command);
             return NotFound();
