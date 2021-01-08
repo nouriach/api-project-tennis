@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tennis.Data.Api.Domain.Contracts
+namespace Tennis.Data.Api.Application.Contracts
 {
     public static class ApiRoutes
     {

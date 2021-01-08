@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tennis.Data.Api.Web.Options.Installers
+namespace Tennis.Data.Api.Infrastructure.Options.Installers
 {
     public interface IInstaller
     {

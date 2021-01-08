@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tennis.Data.Api.Web.Options.Installers
+namespace Tennis.Data.Api.Infrastructure.Options.Installers
 {
     public static class InstallerExtensions
     {
+        /*
         public static void InstallServicesInAssembly(this IServiceCollection services, IConfiguration configuration)
         {
             var installers = typeof(Startup).Assembly.ExportedTypes.Where(x =>
@@ -24,5 +25,6 @@ namespace Tennis.Data.Api.Web.Options.Installers
                 installer.InstallServices(services, configuration);
             });
         }
+        */
     }
 }

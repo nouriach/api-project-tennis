@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tennis.Data.Api.Web.Options
+namespace Tennis.Data.Api.Infrastructure.Options
 {
     public class SwaggerOptions
     {

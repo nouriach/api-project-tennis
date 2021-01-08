@@ -1,30 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tennis.Data.Api.Application.Contracts;
+using Tennis.Data.Api.Application.Players.CommandQueries;
 using Tennis.Data.Api.Domain.Models;
 
 namespace Tennis.Data.Api.Web.Controllers
 {
     public class PlayersController : Controller
     {
-        private List<Player> _players;
+        private readonly IMediator _mediator;
 
-        public PlayersController()
+        public PlayersController(IMediator mediator)
         {
-            _players = new List<Player>();
-
-            for (int i = 0; i < 5; i++)
-            {
-                _players.Add(new Player { FirstName = Guid.NewGuid().ToString() });
-            }
+            _mediator = mediator;
         }
 
-        [HttpGet("api/v1/players")]
+        [HttpGet(ApiRoutes.Players.GetAll)]
         public IActionResult GetAll()
         {
-            return Ok(_players);
+            return Ok();
         }
+
+        [HttpPost(ApiRoutes.Players.Create)]
+        public async Task<IActionResult> Create([FromBody] CreatePlayerCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
+            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", result.FirstName);
+
+            return Created(locationUri, result);
+        }
+
     }
 }
