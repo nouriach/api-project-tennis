@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tennis.Data.Api.Application.Interfaces;
+using Tennis.Data.Api.Application.Players.CommandQueries;
+using Tennis.Data.Api.Application.Players.Commands.CommandResults;
 using Tennis.Data.Api.Application.Players.Queries;
 using Tennis.Data.Api.Domain.Models;
 using Tennis.Data.Api.Persistence.Data;
@@ -41,19 +43,51 @@ namespace Tennis.Data.Api.Application.Players.Services
 
             return result;
         }
-        public Task<bool> CreatePlayerAsync(Player playerToCreate)
+        public async Task<CreatePlayerCommandResult> CreatePlayerAsync(CreatePlayerCommand playerToCreate)
         {
-            // check if player exists
-            // if the player does exist retur false
-            // if the player doesn't exist create it, add it and save it
-            // return created > 0?
-            // This probably should return either a new Player or a null...
-            throw new NotImplementedException();
+            var result = await _context.Players
+                .Where(x =>
+                    x.FirstName == playerToCreate.FirstName &&
+                    x.LastName == playerToCreate.LastName &&
+                    x.Age == playerToCreate.Age &&
+                    x.Gender == playerToCreate.Gender &&
+                    x.Nationality == playerToCreate.Nationality)
+                .SingleOrDefaultAsync();
+
+            if (result != null)
+                return null;
+
+            var addPlayer = new CreatePlayerCommandResult
+            {
+                FirstName = playerToCreate.FirstName,
+                LastName = playerToCreate.LastName,
+                Age = playerToCreate.Age,
+                Gender = playerToCreate.Gender,
+                Nationality = playerToCreate.Nationality,
+
+                Skill = playerToCreate.Skill,
+                Style = playerToCreate.Style
+            };
+
+            _context.Players.Add(addPlayer);
+            _context.SaveChanges();
+
+            return addPlayer;
         }
 
-        public Task<bool> DeletePlayerAsync(int playerId)
+        public async Task<bool> DeletePlayerAsync(int playerId)
         {
-            throw new NotImplementedException();
+            var playerToDelete = await GetPlayerByIdAsync(playerId);
+            if (playerToDelete == null)
+                return false;
+
+            _context.Players.Remove(playerToDelete);
+            // _context.Skills.Remove(playerToDelete.Skill);
+            // _context.Styles.Remove(playerToDelete.Style);
+
+            _context.SaveChanges();
+
+            return true;
         }
 
 
