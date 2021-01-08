@@ -37,7 +37,7 @@ namespace Tennis.Data.Api.Web
                 Configuration.GetConnectionString("DefaultConnection")));
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-                services.AddSingleton<IPlayerService, PlayerService>();
+                services.AddScoped<IPlayerService, PlayerService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
