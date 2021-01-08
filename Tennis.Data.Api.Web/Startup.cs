@@ -34,7 +34,8 @@ namespace Tennis.Data.Api.Web
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
+                Configuration.GetConnectionString("DefaultConnection"),
+                optionsBuilder => optionsBuilder.MigrationsAssembly("Tennis.Data.Api.Persistence")));
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<ApplicationDbContext>();
                 services.AddScoped<IPlayerService, PlayerService>();
