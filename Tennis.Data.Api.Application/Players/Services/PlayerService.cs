@@ -43,9 +43,9 @@ namespace Tennis.Data.Api.Application.Players.Services
 
             return result;
         }
-        public async Task<CreatePlayerCommandResult> CreatePlayerAsync(CreatePlayerCommand playerToCreate)
+        public async Task<Player> CreatePlayerAsync(CreatePlayerCommand playerToCreate)
         {
-            var result = await _context.Players
+            var exists = await _context.Players
                 .Where(x =>
                     x.FirstName == playerToCreate.FirstName &&
                     x.LastName == playerToCreate.LastName &&
@@ -54,25 +54,43 @@ namespace Tennis.Data.Api.Application.Players.Services
                     x.Nationality == playerToCreate.Nationality)
                 .SingleOrDefaultAsync();
 
-            if (result != null)
+            if (exists != null)
                 return null;
 
-            var addPlayer = new CreatePlayerCommandResult
+            //var addPlayer = new CreatePlayerCommandResult(playerToCreate);
+            Player p = new Player
             {
+                Nationality = playerToCreate.Nationality,
+                Gender = playerToCreate.Gender,
+                Age = playerToCreate.Age,
                 FirstName = playerToCreate.FirstName,
                 LastName = playerToCreate.LastName,
-                Age = playerToCreate.Age,
-                Gender = playerToCreate.Gender,
-                Nationality = playerToCreate.Nationality,
 
-                Skill = playerToCreate.Skill,
-                Style = playerToCreate.Style
+                Skill = new Skill
+                {
+                    Endurance = playerToCreate.Skill.Endurance,
+                    Flair = playerToCreate.Skill.Flair,
+                    Power = playerToCreate.Skill.Power,
+                    Serve = playerToCreate.Skill.Serve,
+                    Speed = playerToCreate.Skill.Speed,
+                    Technique = playerToCreate.Skill.Technique,
+                },
+
+                Style = new Style
+                {
+                    GreatReturn = playerToCreate.Style.GreatReturn,
+                    HardHitter = playerToCreate.Style.HardHitter,
+                    RocketServe = playerToCreate.Style.RocketServe,
+                    ServeAndVolley = playerToCreate.Style.ServeAndVolley,
+                    SolidDefence = playerToCreate.Style.SolidDefence,
+                    Tactical = playerToCreate.Style.Tactical,
+                }
             };
 
-            _context.Players.Add(addPlayer);
+            _context.Players.Add(p);
             _context.SaveChanges();
 
-            return addPlayer;
+            return p;
         }
 
         public async Task<bool> DeletePlayerAsync(int playerId)

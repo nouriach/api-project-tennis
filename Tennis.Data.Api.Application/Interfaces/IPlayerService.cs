@@ -15,6 +15,6 @@ namespace Tennis.Data.Api.Application.Interfaces
         Task<Player> GetPlayerByIdAsync(int playerId);
         Task<bool> UpdatePlayerAsync(Player playerToUpdate);
         Task<bool> DeletePlayerAsync(int playerId);
-        Task<CreatePlayerCommandResult> CreatePlayerAsync(CreatePlayerCommand playerToCreate);
+        Task<Player> CreatePlayerAsync(CreatePlayerCommand playerToCreate);
     }
 }
