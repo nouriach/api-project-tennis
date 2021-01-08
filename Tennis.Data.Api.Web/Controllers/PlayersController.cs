@@ -11,6 +11,8 @@ using Tennis.Data.Api.Domain.Models;
 
 namespace Tennis.Data.Api.Web.Controllers
 {
+    [ApiController]
+    [Route("players")]
     public class PlayersController : Controller
     {
         private readonly IMediator _mediator;
