@@ -109,41 +109,51 @@ namespace Tennis.Data.Api.Application.Players.Services
 
 
 
-        public async Task<Player> UpdatePlayerAsync(Player playerToUpdate)
+        public async Task<Player> UpdatePlayerAsync(Player update)
         {
-            var player = await GetPlayerByIdAsync(playerToUpdate.Id);
+            var player = await GetPlayerByIdAsync(update.Id);
+            if (player == null)
+            {
+                throw new InvalidOperationException($"Product '{update.Id}' not found");
 
-            player.Id = player.Id;
-            player.Nationality = playerToUpdate.Nationality == "string" ? player.Nationality : playerToUpdate.Nationality;
-            player.Gender = playerToUpdate.Gender == "string" ? player.Gender : playerToUpdate.Gender;
-            player.Age = playerToUpdate.Age == 0 ? player.Age : playerToUpdate.Age;
-            player.FirstName = playerToUpdate.FirstName == "string" ? player.FirstName : playerToUpdate.FirstName;
-            player.LastName = playerToUpdate.LastName == "string" ? player.LastName : playerToUpdate.LastName;
+            };
 
-
-            player.Skill.PlayerId = player.Id;
-            player.Skill.Endurance = playerToUpdate.Skill.Endurance == 0 ? player.Skill.Endurance : playerToUpdate.Skill.Endurance;
-            player.Skill.Flair = playerToUpdate.Skill.Flair == 0 ? player.Skill.Flair : playerToUpdate.Skill.Flair;
-            player.Skill.Power = playerToUpdate.Skill.Power == 0 ? player.Skill.Power : playerToUpdate.Skill.Power;
-            player.Skill.Serve = playerToUpdate.Skill.Serve == 0 ? player.Skill.Serve : playerToUpdate.Skill.Serve;
-            player.Skill.Speed = playerToUpdate.Skill.Speed == 0 ? player.Skill.Speed : playerToUpdate.Skill.Speed;
-            player.Skill.Technique = playerToUpdate.Skill.Technique == 0 ? player.Skill.Technique : playerToUpdate.Skill.Technique;
-
-            player.Style.PlayerId = player.Id;
-            player.Style.GreatReturn = playerToUpdate.Style.GreatReturn == 0 ? player.Style.GreatReturn : playerToUpdate.Style.GreatReturn;
-            player.Style.HardHitter = playerToUpdate.Style.HardHitter == 0 ? player.Style.HardHitter : playerToUpdate.Style.HardHitter;
-            player.Style.RocketServe = playerToUpdate.Style.RocketServe == 0 ? player.Style.RocketServe : playerToUpdate.Style.RocketServe;
-            player.Style.ServeAndVolley = playerToUpdate.Style.ServeAndVolley == 0 ? player.Style.ServeAndVolley : playerToUpdate.Style.ServeAndVolley;
-            player.Style.SolidDefence = playerToUpdate.Style.SolidDefence == 0 ? player.Style.SolidDefence : playerToUpdate.Style.SolidDefence;
-            player.Style.Tactical = playerToUpdate.Style.Tactical == 0 ? player.Style.Tactical : playerToUpdate.Style.Tactical;
+            UpdatePlayer(update, player);
 
             _context.Players.Update(player);
-            var update = await _context.SaveChangesAsync();
+            var updated = await _context.SaveChangesAsync();
 
-            if (update > 0)
+            if (updated > 0)
                 return player;
 
             return null;
+        }
+
+        private static void UpdatePlayer(Player update, Player player)
+        {
+            player.Id = player.Id;
+            player.Nationality = update.Nationality == "string" ? player.Nationality : update.Nationality;
+            player.Gender = update.Gender == "string" ? player.Gender : update.Gender;
+            player.Age = update.Age == 0 ? player.Age : update.Age;
+            player.FirstName = update.FirstName == "string" ? player.FirstName : update.FirstName;
+            player.LastName = update.LastName == "string" ? player.LastName : update.LastName;
+
+
+            player.Skill.PlayerId = player.Id;
+            player.Skill.Endurance = update.Skill.Endurance == 0 ? player.Skill.Endurance : update.Skill.Endurance;
+            player.Skill.Flair = update.Skill.Flair == 0 ? player.Skill.Flair : update.Skill.Flair;
+            player.Skill.Power = update.Skill.Power == 0 ? player.Skill.Power : update.Skill.Power;
+            player.Skill.Serve = update.Skill.Serve == 0 ? player.Skill.Serve : update.Skill.Serve;
+            player.Skill.Speed = update.Skill.Speed == 0 ? player.Skill.Speed : update.Skill.Speed;
+            player.Skill.Technique = update.Skill.Technique == 0 ? player.Skill.Technique : update.Skill.Technique;
+
+            player.Style.PlayerId = player.Id;
+            player.Style.GreatReturn = update.Style.GreatReturn == 0 ? player.Style.GreatReturn : update.Style.GreatReturn;
+            player.Style.HardHitter = update.Style.HardHitter == 0 ? player.Style.HardHitter : update.Style.HardHitter;
+            player.Style.RocketServe = update.Style.RocketServe == 0 ? player.Style.RocketServe : update.Style.RocketServe;
+            player.Style.ServeAndVolley = update.Style.ServeAndVolley == 0 ? player.Style.ServeAndVolley : update.Style.ServeAndVolley;
+            player.Style.SolidDefence = update.Style.SolidDefence == 0 ? player.Style.SolidDefence : update.Style.SolidDefence;
+            player.Style.Tactical = update.Style.Tactical == 0 ? player.Style.Tactical : update.Style.Tactical;
         }
     }
 }

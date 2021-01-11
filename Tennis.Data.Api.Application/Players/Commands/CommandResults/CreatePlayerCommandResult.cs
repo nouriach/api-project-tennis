@@ -8,6 +8,7 @@ namespace Tennis.Data.Api.Application.Players.Commands.CommandResults
 {
     public class CreatePlayerCommandResult
     {
+        
         public CreatePlayerCommandResult(CreatePlayerCommand command)
         {
             Nationality = command.Nationality;
@@ -39,5 +40,6 @@ namespace Tennis.Data.Api.Application.Players.Commands.CommandResults
 
         public Skill Skill { get; set; }
         public Style Style { get; set; }
+       
     }
 }
