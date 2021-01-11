@@ -13,7 +13,7 @@ namespace Tennis.Data.Api.Application.Interfaces
     {
         Task<List<Player>> GetPlayersAsync(GetAllPlayersQuery query);
         Task<Player> GetPlayerByIdAsync(int playerId);
-        Task<bool> UpdatePlayerAsync(Player playerToUpdate);
+        Task<Player> UpdatePlayerAsync(Player playerToUpdate);
         Task<bool> DeletePlayerAsync(int playerId);
         Task<Player> CreatePlayerAsync(CreatePlayerCommand playerToCreate);
     }

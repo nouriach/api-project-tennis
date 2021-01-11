@@ -22,7 +22,6 @@ namespace Tennis.Data.Api.Application.Players.Services
             _context = context;
         }
 
-        // MAKE ALL ASYNC/AWAIT
         public async Task<Player> GetPlayerByIdAsync(int playerId)
         {
             var result = await _context.Players
@@ -110,9 +109,41 @@ namespace Tennis.Data.Api.Application.Players.Services
 
 
 
-        public Task<bool> UpdatePlayerAsync(Player playerToUpdate)
+        public async Task<Player> UpdatePlayerAsync(Player playerToUpdate)
         {
-            throw new NotImplementedException();
+            var player = await GetPlayerByIdAsync(playerToUpdate.Id);
+
+            player.Id = player.Id;
+            player.Nationality = playerToUpdate.Nationality == "string" ? player.Nationality : playerToUpdate.Nationality;
+            player.Gender = playerToUpdate.Gender == "string" ? player.Gender : playerToUpdate.Gender;
+            player.Age = playerToUpdate.Age == 0 ? player.Age : playerToUpdate.Age;
+            player.FirstName = playerToUpdate.FirstName == "string" ? player.FirstName : playerToUpdate.FirstName;
+            player.LastName = playerToUpdate.LastName == "string" ? player.LastName : playerToUpdate.LastName;
+
+
+            player.Skill.PlayerId = player.Id;
+            player.Skill.Endurance = playerToUpdate.Skill.Endurance == 0 ? player.Skill.Endurance : playerToUpdate.Skill.Endurance;
+            player.Skill.Flair = playerToUpdate.Skill.Flair == 0 ? player.Skill.Flair : playerToUpdate.Skill.Flair;
+            player.Skill.Power = playerToUpdate.Skill.Power == 0 ? player.Skill.Power : playerToUpdate.Skill.Power;
+            player.Skill.Serve = playerToUpdate.Skill.Serve == 0 ? player.Skill.Serve : playerToUpdate.Skill.Serve;
+            player.Skill.Speed = playerToUpdate.Skill.Speed == 0 ? player.Skill.Speed : playerToUpdate.Skill.Speed;
+            player.Skill.Technique = playerToUpdate.Skill.Technique == 0 ? player.Skill.Technique : playerToUpdate.Skill.Technique;
+
+            player.Style.PlayerId = player.Id;
+            player.Style.GreatReturn = playerToUpdate.Style.GreatReturn == 0 ? player.Style.GreatReturn : playerToUpdate.Style.GreatReturn;
+            player.Style.HardHitter = playerToUpdate.Style.HardHitter == 0 ? player.Style.HardHitter : playerToUpdate.Style.HardHitter;
+            player.Style.RocketServe = playerToUpdate.Style.RocketServe == 0 ? player.Style.RocketServe : playerToUpdate.Style.RocketServe;
+            player.Style.ServeAndVolley = playerToUpdate.Style.ServeAndVolley == 0 ? player.Style.ServeAndVolley : playerToUpdate.Style.ServeAndVolley;
+            player.Style.SolidDefence = playerToUpdate.Style.SolidDefence == 0 ? player.Style.SolidDefence : playerToUpdate.Style.SolidDefence;
+            player.Style.Tactical = playerToUpdate.Style.Tactical == 0 ? player.Style.Tactical : playerToUpdate.Style.Tactical;
+
+            _context.Players.Update(player);
+            var update = await _context.SaveChangesAsync();
+
+            if (update > 0)
+                return player;
+
+            return null;
         }
     }
 }

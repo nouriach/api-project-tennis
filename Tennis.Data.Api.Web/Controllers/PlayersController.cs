@@ -58,10 +58,42 @@ namespace Tennis.Data.Api.Web.Controllers
         }
 
         [HttpPut(ApiRoutes.Players.Update)]
-        public async Task<IActionResult> Update ([FromBody] UpdatePlayerCommand command)
+        public async Task<IActionResult> Update ([FromRoute] int playerId, [FromBody] UpdatePlayerCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            var updatePlayerCommand = new UpdatePlayerCommand
+            {
+                Id = playerId,
+                Nationality = command.Nationality,
+                Gender = command.Gender,
+                Age = command.Age,
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+
+                Skill = new Skill
+                {
+                    PlayerId = playerId,
+                    Endurance = command.Skill.Endurance,
+                    Flair = command.Skill.Flair,
+                    Power = command.Skill.Power,
+                    Serve = command.Skill.Serve,
+                    Speed = command.Skill.Speed,
+                    Technique = command.Skill.Technique,
+                },
+
+                Style = new Style
+                {
+                    PlayerId = playerId,
+                    GreatReturn = command.Style.GreatReturn,
+                    HardHitter = command.Style.HardHitter,
+                    RocketServe = command.Style.RocketServe,
+                    ServeAndVolley = command.Style.ServeAndVolley,
+                    SolidDefence = command.Style.SolidDefence,
+                    Tactical = command.Style.Tactical,
+                }
+            };
+
+            var playerToUpdate = await _mediator.Send(updatePlayerCommand);
+            return Ok(playerToUpdate);
         }
 
         [HttpDelete(ApiRoutes.Players.Delete)]
