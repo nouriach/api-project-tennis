@@ -14,9 +14,9 @@ namespace Tennis.Data.Api.Persistence.Data
         {
         }
 
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Skill> Skills { get; set; }
-        public DbSet<Style> Styles { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Skill> Skills { get; set; }
+        public virtual DbSet<Style> Styles { get; set; }
 
     }
 }
